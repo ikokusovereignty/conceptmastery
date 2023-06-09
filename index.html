@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<head>
+    <title>Terman's Concept Mastery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#b8d9cd">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap" rel="stylesheet">    
+</head>
+<style>
+    .firstButton:hover {
+        background-color: #b8d9cd !important;
+        cursor: pointer;
+    }
+    .secondButton:hover {
+        background-color: #59b393 !important;
+        border: 1px solid #59b393 !important;
+        color: #ffffff !important;
+        cursor: pointer;
+    }
+    @media only screen and (max-width:500px) {
+        #firstButtons {
+            flex-direction: column;
+            align-self: stretch !important;
+        }
+        #firstButton {
+            padding: 50px 50px 100px 50px !important;
+        }
+        #secondButton {
+            padding: 100px 50px 50px 50px !important;
+        }
+        .progressText {
+            flex-direction: column;
+            align-items: center !important;
+        }
+        body {
+            line-height: 1.5 !important;
+        }
+        #secondButtons {
+            flex-direction: column;
+            align-self: stretch !important;
+        }
+        #firstOption {
+            padding: 100px 50px 50px 50px !important;
+        }
+        #thirdOption {
+            padding: 50px 50px 100px 50px !important;
+        }
+        #takeTest {
+            align-self: stretch !important;
+        }
+    }
+</style>
+<body style="margin:0;background-color:#ffffff;font-family:Roboto Slab,serif;line-height:1;text-align:center;font-size:16px;font-weight:400;color:#000000;">
+    <div style="display:flex;flex-direction:column;position:fixed;width:100%;height:100%;overflow:auto;">
+        <div style="display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid #b8d9cd;padding:50px;flex-grow:1;">
+            <div id="descriptionScreen" style="display:flex;flex-direction:column;align-items:center;font-size:24px;line-height:1.5;gap:100px;font-weight:100">
+                <div style="max-width:1000px;">
+                    The Concept Mastery test measures one's ability to "deal with abstract ideas at a high level". In this test, you'll have to tell whether two words are either synonyms or antonyms (such as transient and permanent) and also to identify analogies (as in Clydesdale is to horses as Holstein is to). There are no time limits, but you shouldn't spend too much time on each question.
+                </div>
+                <div id="takeTest" class="firstButton" onclick="takeTest(event)" style="display:flex;justify-content:center;background-color:#59b393;padding:100px;color:#ffffff;border-radius:5px;font-weight:400;">TAKE THE TEST</div>
+            </div>
+            <div id="relationsScreen" style="display:none;flex-direction:column;gap:100px;">
+                <div style="align-self:center;">
+                    <span id="firstTerm" style="font-weight:700;font-size:24px;">transient</span>
+                    <span style="color:#59b393;font-weight:400;">AND</span> 
+                    <span id="secondTerm" style="font-weight:700;font-size:24px;">permanent</span>
+                    <span style="color:#59b393;font-weight:400;">ARE</span>
+                </div>
+                <div id="firstButtons" style="display:flex;gap:50px;align-self:center;">
+                    <div id="firstButton" class="firstButton" onclick="chooseSynonyms(event)" style="background-color:#59b393;padding:50px 100px 50px 50px;color:#ffffff;border-radius:5px;font-weight:400;">SYNONYMS</div>
+                    <div id="secondButton" class="firstButton" onclick="chooseAntonyms(event)" style="background-color:#59b393;padding:50px 50px 50px 100px;color:#ffffff;border-radius:5px;font-weight:400;">ANTONYMS</div>
+                </div>
+            </div>
+            <div id="analogiesScreen" style="display:none;flex-direction:column;gap:100px;">
+                <div style="align-self:center;">
+                    <span id="thirdTerm" style="font-weight:700;font-size:24px;">Clydesdale</span>
+                    <span style="color:#59b393;font-weight:400;">IS TO</span> 
+                    <span id="fourthTerm" style="font-weight:700;font-size:24px;">horses</span>
+                    <span style="color:#59b393;font-weight:400;">AS</span>
+                    <span id="fifthTerm" style="font-weight:700;font-size:24px;">Holstein</span>
+                    <span style="color:#59b393;font-weight:400;">IS TO</span>
+                </div>
+                <div id="secondButtons" style="display:flex;gap:50px;align-self:center;">
+                    <div class="secondButton" id="firstOption" onclick="chooseAnalogies(0)" style="background-color:#ffffff;border:1px solid #b8d9cd;padding:50px 50px 50px 100px;border-radius:5px;font-weight:400;color:#59b393;">CATTLE</div>
+                    <div class="secondButton" id="secondOption" onclick="chooseAnalogies(1)" style="background-color:#ffffff;border:1px solid #b8d9cd;padding:50px;border-radius:5px;color:#59b393;font-weight:400;">SHEEP</div>
+                    <div class="secondButton" id="thirdOption" onclick="chooseAnalogies(2)" style="background-color:#ffffff;border:1px solid #b8d9cd;padding:50px 100px 50px 50px;border-radius:5px;color:#59b393;font-weight:400;">HOG</div>
+                </div>
+            </div>
+            <div id="scoreScreen" style="display:none;flex-direction:column;align-items:center;gap:100px;">
+                <span style="font-weight:100;font-size:24px;">Your scores</span>
+                <div style="display:flex;gap:100px;flex-wrap:wrap;justify-content:center;">
+                    <div style="display:flex;gap:50px;">
+                        <div style="display:flex;flex-direction:column;gap:25px;">
+                            <span id="correctScore" style="font-weight:700;font-size:24px;">0</span>
+                            <span style="font-weight:400;font-size:16px;color:#59b393;">CORRECT</span>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:25px;">
+                            <span id="incorrectScore" style="font-weight:700;font-size:24px;">0</span>
+                            <span style="font-weight:400;font-size:16px;color:#59b393;">INCORRECT</span>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:25px;">
+                        <span id="iqScore" style="font-weight:700;font-size:24px;">0</span>
+                        <span style="font-weight:400;font-size:16px;color:#59b393;">IQ (MEAN 100, SD 15)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="progress" style="display:none;flex-direction:column;margin-top:auto;gap:50px;align-items:center;padding:50px;">
+            <div style="display:flex;gap:50px;align-items:flex-end;">
+                <div id="relationsProgress" style="display:flex;flex-direction:column;gap:50px;">
+                    <div style="display:flex;height:12px;background-color:#ffffff;border:1px solid #b8d9cd;border-radius:5px;overflow:hidden;">
+                        <div id="relationsBar" style="flex-basis:0.833333333%;background-color:#59b393;"></div>
+                    </div>                
+                    <div class="progressText" style="display:flex;gap:25px;align-items:flex-end;">
+                        <span style="font-weight:400;font-size:12px;color:#59b393;">SYNONYMS AND ANTONYMS</span>
+                        <span style="font-weight:700;font-size:20px;"><span id="relationsCounter">0</span> <span style="font-weight:400;color:#59b393;font-size:12px;">OF 120</span></span>
+                    </div>
+                </div>
+                <div id="analogiesProgress" style="display:none;flex-direction:column;gap:50px;">
+                    <div style="display:flex;height:12px;background-color:#ffffff;border:1px solid #b8d9cd;border-radius:5px;overflow:hidden;">
+                        <div id="analogiesBar" style="flex-basis:0.526315789%;background-color:#59b393;"></div>
+                    </div>  
+                    <div class="progressText" style="display:flex;gap:25px;align-items:flex-end;">
+                        <span style="font-weight:400;font-size:12px;color:#59b393;">ANALOGIES</span>
+                        <span style="font-weight:700;font-size:20px;"><span id="analogiesCounter">0</span> <span style="font-weight:400;color:#59b393;font-size:12px;">OF 70</span></span>
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:50px;">
+                    <div style="display:flex;height:12px;background-color:#ffffff;border:1px solid #b8d9cd;border-radius:5px;overflow:hidden;">
+                        <div id="overallBar" style="flex-basis:0.526315789%;background-color:#59b393;"></div>
+                    </div>  
+                    <div class="progressText" style="display:flex;gap:25px;align-items:flex-end;">
+                        <span style="font-weight:400;font-size:12px;color:#59b393;">TERMAN'S CONCEPT MASTERY</span>
+                        <span style="font-weight:700;font-size:20px;"><span id="overallCounter">0</span> <span style="font-weight:400;color:#59b393;font-size:12px;">OF 190</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display:none;flex-direction:column;align-items:center;padding:50px;">
+
+        </div>
+    </div>
+</body>
+<script type="module">
+    import { relations, analogies } from './questions.js'
+
+    let rawScore = 0
+    let currentRelation = 0
+    let currentAnalogy = 0
+    let correct = 0
+
+    window.takeTest = function (event) {
+        descriptionScreen.style.display = 'none'
+        relationsScreen.style.display = 'flex'
+        progress.style.display = 'flex'
+    }
+
+    function relationChoice(choice) {
+        if (relations[currentRelation].relation == choice) {
+            rawScore += 1
+            correct += 1
+        } else {
+            rawScore -= 1
+        }
+
+        currentRelation += 1
+        if (currentRelation == 120) {
+            relationsScreen.style.display = 'none'
+            analogiesScreen.style.display = 'flex'
+            relationsProgress.style.display = 'none'
+            analogiesProgress.style.display = 'flex'
+        } else {
+            firstTerm.innerText = relations[currentRelation].words[0]
+            secondTerm.innerText = relations[currentRelation].words[1]
+        }
+
+        relationsCounter.innerText = currentRelation
+        relationsBar.style.flexBasis = `${(currentRelation / 120) * 100}%`
+        overallCounter.innerText = currentRelation
+        overallBar.style.flexBasis = `${(currentRelation / 190) * 100}%`
+
+        document.title = `${currentRelation}/190, Terman's Concept Mastery`
+    }
+
+    window.chooseAnalogies = function (option) {
+        if (analogies[currentAnalogy].options.indexOf(analogies[currentAnalogy].correct_option) == option) {
+            rawScore += 1
+            correct += 1
+        } else {
+            rawScore -= 0.5
+        }
+
+        currentAnalogy += 1
+        if (currentAnalogy == 70) {
+            analogiesScreen.style.display = 'none'
+            scoreScreen.style.display = 'flex'
+            analogiesProgress.style.display = 'none'
+
+            correctScore.innerText = correct
+            incorrectScore.innerText = 190 - correct
+            iqScore.innerText = Math.floor(100 + (((rawScore - 2) / 37) * 15))
+        } else {
+            thirdTerm.innerText = analogies[currentAnalogy].analogies[0]
+            fourthTerm.innerText = analogies[currentAnalogy].analogies[1]
+            fifthTerm.innerText = analogies[currentAnalogy].analogies[2]
+            firstOption.innerText = analogies[currentAnalogy].options[0]
+            secondOption.innerText = analogies[currentAnalogy].options[1]
+            thirdOption.innerText = analogies[currentAnalogy].options[2]
+        }
+    
+        analogiesCounter.innerText = currentAnalogy
+        analogiesBar.style.flexBasis = `${(currentAnalogy / 70) * 100}%`
+        overallCounter.innerText = currentAnalogy + currentRelation
+        overallBar.style.flexBasis = `${((currentAnalogy + currentRelation) / 190) * 100}%`
+        
+        document.title = `${currentAnalogy + currentRelation}/190, Terman's Concept Mastery`
+    }
+
+    window.chooseSynonyms = function (event) {
+        relationChoice(0)
+    }
+    window.chooseAntonyms = function (event) {
+        relationChoice(1)
+    }
+</script>
