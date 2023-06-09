@@ -522,12 +522,12 @@ export const analogies = [
         correct_option: 'Vassar'
     },
     {
-        analogies: ['Drawin', 'Evolution', 'Einstein'],
-        options: ['Relativity', 'Mathematics', 'Magnetism'],
+        analogies: ['Darwin', 'evolution', 'Einstein'],
+        options: ['relativity', 'mathematics', 'magnetism'],
         correct_option: 'Relativity'
     },
     {
-        analogies: ['North Pole', 'Equator', 'frigid'],
+        analogies: ['north pole', 'equator', 'frigid'],
         options: ['cool', 'mild', 'torrid'],
         correct_option: 'torrid'
     },
@@ -582,7 +582,7 @@ export const analogies = [
         correct_option: 'tuberculosis'
     },
     {
-        analogies: ['Panama Canal', 'Goethals', 'Suez'],
+        analogies: ['Panama Canal', 'Goethals', 'Suez Canal'],
         options: ['Lamartine', 'de Lesseps', 'Napoleon'],
         correct_option: 'de Lesseps'
     },
@@ -657,7 +657,7 @@ export const analogies = [
         correct_option: 'calcium'
     },
     {
-        analogies: ['realism', 'DaVinci', 'satire'],
+        analogies: ['realism', 'da Vinci', 'satire'],
         options: ['Hogarth', 'Rubens', 'Rembrandt'],
         correct_option: 'Hogarth'
     },
@@ -767,8 +767,8 @@ export const analogies = [
         correct_option: 'Monteverdi'
     },
     {
-        analogies: ['astrology', 'chemistry', 'phrenology'],
-        options: ['physics', 'chemistry', 'future'],
+        analogies: ['astrology', 'astronomy', 'alchemy'],
+        options: ['physics', 'chemistry', 'phrenology'],
         correct_option: 'chemistry'
     },
     {
@@ -812,9 +812,9 @@ export const analogies = [
         correct_option: 'responsibility'
     },
     {
-        analogies: ['nefarious', 'dromedary', 'four'],
-        options: ['camphor', 'bee', 'eggs'],
-        correct_option: 'eggs'
+        analogies: ['"nefarious"', '"dromedary"', '"four"'],
+        options: ['"camphor"', '"bee"', '"eggs"'],
+        correct_option: '"eggs"'
     },
     {
         analogies: ['aria', 'pas seul', 'opera'],
